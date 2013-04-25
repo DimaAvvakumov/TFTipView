@@ -206,6 +206,8 @@
         pos.x = pos.x + textField.frame.size.width - self.frame.size.width;
         
         isRightSide = YES;
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     }
     
     CGRect viewFrame = self.frame;
