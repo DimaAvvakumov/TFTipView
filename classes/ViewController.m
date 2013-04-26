@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *secondButton;
 @property (strong, nonatomic) TFTipView *tipView;
 
 @end
@@ -31,6 +32,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setSecondButton:nil];
     [super viewDidUnload];
 }
 
@@ -57,7 +59,11 @@
         [view setTextMaxWidth: 140.0];
     }
     [view setText:@"This is only demonstration variant. You can put there own text."];
-    [view attachToView:self.view fromField:textField];
+    if (textField.tag == 2) {
+        [view attachToView:self.view fromField:_secondButton];
+    } else {
+        [view attachToView:self.view fromField:textField];
+    }
     
     self.tipView = view;
 }

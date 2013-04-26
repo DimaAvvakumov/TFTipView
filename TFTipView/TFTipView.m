@@ -194,7 +194,7 @@
 
 #pragma mark - Show and hide methods
 
-- (void) attachToView:(UIView *)view fromField:(UITextField *)textField {
+- (void) attachToView:(UIView *)view fromField:(UIView *)textField {
     [self redraw];
     
     // calculate position

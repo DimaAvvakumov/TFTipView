@@ -54,7 +54,7 @@ typedef enum {
 - (id) initWithStyle: (TFTipViewStyle) style;
 
 #pragma mark - Show and hide methods
-- (void) attachToView: (UIView *) view fromField: (UITextField *) textField;
+- (void) attachToView: (UIView *) view fromField: (UIView *) textField;
 - (void) hideAnimated: (BOOL) animated;
 
 #pragma mark - Customization
