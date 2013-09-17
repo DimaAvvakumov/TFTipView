@@ -8,6 +8,8 @@
 
 #import "TFTipView.h"
 
+#define TFTTipShareTipKey @"SharedTipView"
+
 @interface TFTipView() {
     float _textWidth;
     UIEdgeInsets _textInsets;
@@ -66,6 +68,8 @@
 
 + (id) tipWithStyle:(TFTipViewStyle)style {
     TFTipView *view = TFTIP_AUTORELEASE([[TFTipView alloc] initWithStyle:style]);
+    
+    [TFTipView setShareTip: view];
     
     return view;
 }
@@ -190,6 +194,31 @@
     _arrowOffset = 100.0;
     self.shadowStoreColor = shadowColor;
     self.backgroundStoreColor = backgroundColor;
+}
+
+#pragma mark - Shared tip
+
++ (NSMutableDictionary *) sharedTipStore {
+    static NSMutableDictionary *store = nil;
+    if (store == nil) {
+        store = TFTIP_RETAIN([NSMutableDictionary dictionaryWithCapacity: 1]);
+    }
+    
+    return store;
+}
+
++ (void) setShareTip: (TFTipView *) tipView {
+    NSMutableDictionary *store = [TFTipView sharedTipStore];
+    if (tipView) {
+        [store setObject:tipView forKey:TFTTipShareTipKey];
+    } else {
+        [store removeObjectForKey:TFTTipShareTipKey];
+    }
+}
+
++ (TFTipView *) sharedTip {
+    NSMutableDictionary *store = [TFTipView sharedTipStore];
+    return [store objectForKey:TFTTipShareTipKey];
 }
 
 #pragma mark - Show and hide methods

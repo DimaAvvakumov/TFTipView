@@ -53,6 +53,9 @@ typedef enum {
 + (id) tipWithStyle: (TFTipViewStyle) style;
 - (id) initWithStyle: (TFTipViewStyle) style;
 
+#pragma mark - Shared tip
++ (TFTipView *) sharedTip;
+
 #pragma mark - Show and hide methods
 - (void) attachToView: (UIView *) view fromField: (UIView *) textField;
 - (void) hideAnimated: (BOOL) animated;

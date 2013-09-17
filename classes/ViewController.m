@@ -11,7 +11,7 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;
-@property (strong, nonatomic) TFTipView *tipView;
+// @property (strong, nonatomic) TFTipView *tipView;
 
 @end
 
@@ -41,11 +41,15 @@
 }
 
 - (void) hideTip {
-    if (_tipView) {
-        [_tipView hideAnimated: YES];
-        
-        self.tipView = nil;
+    TFTipView *view = [TFTipView sharedTip];
+    if (view) {
+        [view hideAnimated: YES];
     }
+//    if (_tipView) {
+//        [_tipView hideAnimated: YES];
+//        
+//        self.tipView = nil;
+//    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -65,7 +69,7 @@
         [view attachToView:self.view fromField:textField];
     }
     
-    self.tipView = view;
+    // self.tipView = view;
 }
 
 #pragma mark - TFTipViewDelegate
